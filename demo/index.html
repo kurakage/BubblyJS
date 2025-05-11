@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BubblyJS Demo</title>
+  <link rel="stylesheet" href="../css/bubbly.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    button {
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>BubblyJS Demo</h1>
+
+  <button onclick="Bubbly('Simple info message')">Info</button>
+  <button onclick="Bubbly('Success!', { type: 'success' })">Success</button>
+  <button onclick="Bubbly('Oops! Error occurred.', { type: 'error', position: 'right-top' })">Error (top right)</button>
+  <button onclick="Bubbly('Sticky with close', { timeleft: 0, close: true })">Sticky (close)</button>
+  <button onclick="Bubbly('Bottom right custom', { position: 'right-bottom' })">Bottom Right</button>
+
+  <script src="../js/bubbly.js"></script>
+</body>
+</html>
