@@ -12,7 +12,7 @@
  * Подключение: без зависимостей, но требует jQuery.
  *
  * Автор: kurakage
- * Версия: 1.0
+ * Версия: 1.1
 */
 if(typeof Bubbly === 'undefined') {
 	if(typeof generateUniqueId === 'undefined') {
@@ -23,8 +23,9 @@ if(typeof Bubbly === 'undefined') {
 
 	function Bubbly(message, { type = 'info', timeleft = 3000, position = 'left-bottom', close = false } = {}) {
 		const id = generateUniqueId('bubbly_');
-		let container = document.getElementById('bubbly');
-		
+		const containerId = 'bubbly-' + position.replace('-', '');
+		let container = document.getElementById(containerId);
+
 		const item = document.createElement('div');
 		item.id = id;
 		item.classList.add('bubbly-item', 'bubbly-' + type);
@@ -46,23 +47,15 @@ if(typeof Bubbly === 'undefined') {
 					c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719
 					c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"/>
 				</svg>`;
-			closeBtn.addEventListener('click', () => {
-				item.remove();
-			});
-
+			closeBtn.addEventListener('click', () => item.remove());
 			item.appendChild(closeBtn);
 		}
 
 		if(!container) {
 			container = document.createElement('div');
-			container.id = 'bubbly';
-			container.classList.add('position-' + position);
+			container.id = containerId;
+			container.classList.add('bubbly-container', 'position-' + position);
 			document.body.appendChild(container);
-		}
-		else {
-			const existing = Array.from(container.classList).filter(c => c.startsWith('position-'));
-			existing.forEach(c => container.classList.remove(c));
-			container.classList.add('position-' + position);
 		}
 
 		container.appendChild(item);
@@ -76,11 +69,7 @@ if(typeof Bubbly === 'undefined') {
 			setTimeout(() => {
 				item.style.opacity = '0';
 				item.style.transform = 'translateY(-20px)';
-
-				setTimeout(() => {
-					item.remove();
-				}, 300);
-
+				setTimeout(() => item.remove(), 300);
 			}, timeleft);
 		}
 	}

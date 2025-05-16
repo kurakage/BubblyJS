@@ -1,8 +1,9 @@
-#bubbly {
+.bubbly-container {
 	--bubbly-left: 10px;
 	--bubbly-right: auto;
 	--bubbly-top: auto;
 	--bubbly-bottom: 10px;
+	--bubbly-button-close-color: #fff;
 
 	top: var(--bubbly-top);
 	bottom: var(--bubbly-bottom);
@@ -15,52 +16,55 @@
 	position: fixed;
 	gap: 4px;
 	font-size: 14px;
-
-	&.position-left-top {
-		--bubbly-left: 10px;
-		--bubbly-right: auto;
-		--bubbly-top: 10px;
-		--bubbly-bottom: auto;
-	}
-
-	&.position-left-bottom {
-		--bubbly-left: 10px;
-		--bubbly-right: auto;
-		--bubbly-top: auto;
-		--bubbly-bottom: 10px;
-	}
-
-	&.position-right-top {
-		--bubbly-left: auto;
-		--bubbly-right: 10px;
-		--bubbly-top: 10px;
-		--bubbly-bottom: auto;
-	}
-
-	&.position-right-bottom {
-		--bubbly-left: auto;
-		--bubbly-right: 10px;
-		--bubbly-top: auto;
-		--bubbly-bottom: 10px;
-	}
-
-	&.position-center-top {
-		--bubbly-left: 50%;
-		transform: translateX(-50%);
-		--bubbly-right: auto;
-		--bubbly-top: 10px;
-		--bubbly-bottom: auto;
-	}
-
-	&.position-center-bottom {
-		--bubbly-left: 50%;
-		transform: translateX(-50%);
-		--bubbly-right: auto;
-		--bubbly-top: auto;
-		--bubbly-bottom: 10px;
-	}
+	z-index: 9999;
 }
 
+/* Positions */
+.bubbly-container.position-left-top {
+	--bubbly-left: 10px;
+	--bubbly-right: auto;
+	--bubbly-top: 10px;
+	--bubbly-bottom: auto;
+}
+
+.bubbly-container.position-left-bottom {
+	--bubbly-left: 10px;
+	--bubbly-right: auto;
+	--bubbly-top: auto;
+	--bubbly-bottom: 10px;
+}
+
+.bubbly-container.position-right-top {
+	--bubbly-left: auto;
+	--bubbly-right: 10px;
+	--bubbly-top: 10px;
+	--bubbly-bottom: auto;
+}
+
+.bubbly-container.position-right-bottom {
+	--bubbly-left: auto;
+	--bubbly-right: 10px;
+	--bubbly-top: auto;
+	--bubbly-bottom: 10px;
+}
+
+.bubbly-container.position-center-top {
+	--bubbly-left: 50%;
+	transform: translateX(-50%);
+	--bubbly-right: auto;
+	--bubbly-top: 10px;
+	--bubbly-bottom: auto;
+}
+
+.bubbly-container.position-center-bottom {
+	--bubbly-left: 50%;
+	transform: translateX(-50%);
+	--bubbly-right: auto;
+	--bubbly-top: auto;
+	--bubbly-bottom: 10px;
+}
+
+/* Notificaitons */
 .bubbly-item {
 	--bubbly-item-color: #464646;
 	--bubbly-item-background: #d3d3d3;
@@ -72,37 +76,51 @@
 	padding: 10px;
 	white-space: normal;
 	word-break: break-word;
+	position: relative;
+	overflow: hidden;
+}
 
-	&.bubbly-error {
-		--bubbly-item-color: #ff4141;
-		--bubbly-item-background: #ffcaca;
-	}
+/* Types */
+.bubbly-item.bubbly-error {
+	--bubbly-item-color: #ff4141;
+	--bubbly-item-background: #ffcaca;
+	--bubbly-button-close-color: #ff4141;
+}
 
-	&.bubbly-info,
-	&.bubbly-confirm {
-		--bubbly-item-color: #fff;
-		--bubbly-item-background: #7838ff;
-	}
-	
-	&.bubbly-warning {
-		--bubbly-item-color: #fff;
-		--bubbly-item-background: #f7a934;
-	}
+.bubbly-item.bubbly-info,
+.bubbly-item.bubbly-confirm {
+	--bubbly-item-color: #fff;
+	--bubbly-item-background: #7838ff;
+	--bubbly-button-close-color: #fff;
+}
 
-	& > button.btn-close {
-		position: absolute;
-		right: 10px;
-		top: 50%;
-		transform: translateY(-50%);
+.bubbly-item.bubbly-warning {
+	--bubbly-item-color: #fff;
+	--bubbly-item-background: #f7a934;
+	--bubbly-button-close-color: #fff;
+}
 
-		background-color: transparent;
-		padding: 0;
-		margin: 0;
-		border: 0;
-		cursor: pointer;
-		
-		& > svg {
-			fill: #eee;
-		}
-	}
+.bubbly-item.bubbly-success {
+	--bubbly-item-color: #fff;
+	--bubbly-item-background: #1ed324;
+	--bubbly-button-close-color: #fff;
+}
+
+/* Close button */
+.bubbly-item > button.btn-close {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: transparent;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	cursor: pointer;
+}
+
+.bubbly-item > button.btn-close > svg {
+	fill: var(--bubbly-button-close-color);
+	width: 10px;
+	height: 10px;
 }
